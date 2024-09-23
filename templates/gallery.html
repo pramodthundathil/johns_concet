@@ -1,0 +1,436 @@
+{% extends 'index.html' %}{% load static %}{% block content %}
+<style>
+    .navbar .nav-link {
+        color: #000 !important;
+        /* Change link colors to match the white background */
+    }
+    /* ***** */
+/* GALLERY STYLES */
+/* ***** */
+
+/*Overlay styles*/
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #000;
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.open {
+  visibility: visible;
+  opacity: 1;
+}
+
+/*Popup window styles*/
+.popup {
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 5px;
+  position: relative;
+  z-index: 10;
+  max-width: 70%;
+  height: auto;
+  overflow: hidden;
+}
+
+.popup img {
+  margin: 0 auto;
+  opacity: 0;
+  width: 100%;
+  height: auto;
+  display: none;
+}
+
+/*Buttons styles*/
+
+.popup span#close {
+  position: fixed;
+  top: 20px;
+  right: 40px;
+  transition: all 200ms;
+  font-size: 40px;
+  font-weight: bold;
+  color: #fff;
+  z-index: 100;
+  cursor: pointer;
+}
+.popup span#next {
+  position: fixed;
+  top: 50%;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 70px;
+  font-weight: bold;
+  color: #fff;
+  z-index: 100;
+  cursor: pointer;
+}
+
+.popup span#prev {
+  position: fixed;
+  top: 50%;
+  left: 30px;
+  transition: all 200ms;
+  font-size: 70px;
+  font-weight: bold;
+  color: #fff;
+  z-index: 100;
+  cursor: pointer;
+}
+
+
+.popup .play_wrap {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  transition: all 200ms;
+  padding-bottom: 30px;
+  padding-top: 35px;
+  opacity: 0;
+  z-index: 101;
+}
+
+.popup .play_wrap:hover{
+  opacity: 1;
+  background-color: rgba(204,204,204, 0.8);
+}
+
+.popup .play_wrap span {
+  font-size: 60px;
+}
+
+.popup .play_wrap span#stop {
+  display: none;
+}
+
+.popup .play_wrap span#play:hover, .popup .play_wrap span#stop:hover {
+  color: #1F6FEB;
+  cursor: pointer;
+}
+
+
+.popup .play_wrap span i {
+  margin-left: 5px;
+  cursor: pointer;
+  transition: all 200ms;
+  color: #fff;
+}
+
+
+.popup span#next:hover, .popup span#prev:hover, .popup span#close:hover {
+  color: #1F6FEB;
+  border-color: #1F6FEB;
+}
+
+/* ***** */
+/* PAGE STYLES */
+/* ***** */
+
+.wrap {
+	display: flex;
+	justify-content: center;
+	max-width: 1200px;
+	margin: 50px auto;
+}
+
+.gallery {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.gallery img {
+	width: calc(100% * (1/4) - 10px - 1px);
+	height: auto;
+  	margin-bottom: 15px;
+	cursor: pointer;
+}
+
+.gallery .gallary_block img:last-child {
+	margin-right: 0;
+}
+
+.gallery .gallary_block {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 15px;
+}
+</style>
+
+
+
+<!-- Page Header Start -->
+<div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <h1 class="display-1 text-white animated slideInDown">Gallery</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb text-uppercase mb-0">
+                <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
+                <!-- <li class="breadcrumb-item"><a class="text-white" href="#"></a></li> -->
+                <li class="breadcrumb-item text-primary active" aria-current="page">Gallery</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<section class="from-blog spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="section-title from-blog__title" >
+                    <h2 style="color: #3673b2;">Gallery</h2>
+                </div>
+            </div>
+        </div>
+<!-- gallery nav and tab  -->
+
+
+    <nav class="mt-4">
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                type="button" role="tab" aria-controls="nav-home" aria-selected="true">Architecture</button>
+            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Interior</button>
+            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
+                type="button" role="tab" aria-controls="nav-contact" aria-selected="false">On going works</button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"
+            tabindex="0">
+        
+        	<div class="wrap">
+                <div class="gallery">
+                    <img src="https://tex1712.github.io/repo/gallery/images/img_1.jpg"  alt="">
+                    
+                    <img src="https://tex1712.github.io/repo/gallery/images/img_2.jpg"  alt="">
+                    <img src="https://tex1712.github.io/repo/gallery/images/img_3.jpg"  alt="">
+                    <img src="https://tex1712.github.io/repo/gallery/images/img_4.jpg"  alt="">
+                    <img src="https://tex1712.github.io/repo/gallery/images/img_5.jpg" alt="">
+                    <img src="https://tex1712.github.io/repo/gallery/images/img_6.jpg"  alt="">
+                    <img src="https://tex1712.github.io/repo/gallery/images/img_7.jpg" alt="">
+                    <img src="https://tex1712.github.io/repo/gallery/images/img_8.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+
+            
+        </div>
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">...
+        </div>
+    </div>
+</div>
+
+<!-- gallery nav and tab end  -->
+
+</section>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script>
+    "use strict";
+
+class Gallery {
+
+    constructor(settings) {
+        // Slider Options
+        let defaults = {
+            next_by_click_img: true,
+            speed: 400,
+            play: true,
+            auto_play_speed: 2000,
+            button_play: 'fa fa-play-circle',
+            button_stop: 'fa fa-stop-circle',
+            button_next: 'fa fa-chevron-circle-right',
+            button_prev: 'fa fa-chevron-circle-left',
+            button_close: 'fa fa-times-circle',
+        };
+
+        this.options = $.extend(defaults, settings);
+
+        // Adding PopUp HtmlContent
+        $('body').append('<div id="overlay" class="overlay"><div class="popup" id="popupBody"></div></div>');
+        this.overlay = $('.overlay');
+        this.popup = $('.popup');
+
+        // Variable for preventing multiple clicking
+        this.isRun = false;
+        this.isPlaying = false; // Track autoplay state
+    }
+
+    open(content, image) {
+        // Open overlay
+        this.overlay.addClass('open');
+
+        // Creating buttons
+        this.popup.append('<span id="close"><i></i></span><span id="next"><i></i></span><span id="prev"><i></i></span>');
+        if (this.options.play === true) {
+            this.popup.append('<div class="play_wrap"><span id="play"><i></i></span><span id="stop"><i></i></span></div>');
+        }
+        this.closeButton = $('#close');
+        this.nextButton = $('#next');
+        this.prevButton = $('#prev');
+        this.playButton = $('#play');
+        this.stopButton = $('#stop');
+
+        // Adding content
+        this.content = $(content).clone();
+        this.popup.append(this.content);
+        this.index = $(image).index();
+
+        // Running functions
+        this.slider();
+        this.close();
+        this.styles();
+        this.autoplay();
+
+        return this;
+    }
+
+    close() {
+        this.closeButton.on('click', () => {
+            this.overlay.removeClass('open');
+            this.popup.empty();
+            this.stopAutoplay(); // Ensure autoplay is stopped when closing
+        });
+    }
+
+    slider() {
+        // Show the clicked img & adjusting sizes of popUp Window
+        this.content.eq(this.index).css('opacity', 1).css('display', 'block');
+
+        // Click on function buttons of the slider
+        this.nextButton.on('click', () => { this.next(); });
+        this.prevButton.on('click', () => { this.prev(); });
+
+        $(document).keydown((e) => {
+            if (e.which === 39) {
+                this.next();
+            }
+            if (e.which === 37) {
+                this.prev();
+            }
+        });
+
+        if (this.options.next_by_click_img !== false) {
+            this.content.on('click', () => { this.next(); });
+            this.content.css('cursor', 'pointer');
+        }
+    }
+
+    next() {
+        if (this.isRun) return;
+
+        this.isRun = true;
+
+        this.content.eq(this.index).animate({
+            'opacity': 0
+        }, this.options.speed);
+
+        this.content.eq(this.index).css('display', 'none');
+
+        this.index++;
+        if (this.index > this.content.length - 1) {
+            this.index = 0;
+        }
+
+        this.content.eq(this.index).css('display', 'block');
+        this.content.eq(this.index).animate({
+            'opacity': 1
+        }, this.options.speed, () => {
+            this.isRun = false;
+        });
+    }
+
+    prev() {
+        if (this.isRun) return;
+
+        this.isRun = true;
+
+        this.content.eq(this.index).animate({
+            'opacity': 0
+        }, this.options.speed);
+
+        this.content.eq(this.index).css('display', 'none');
+
+        this.index--;
+        if (this.index < 0) {
+            this.index = this.content.length - 1;
+        }
+
+        this.content.eq(this.index).css('display', 'block');
+        this.content.eq(this.index).animate({
+            'opacity': 1
+        }, this.options.speed, () => {
+            this.isRun = false;
+        });
+    }
+
+    styles() {
+        this.playButton.addClass(this.options.button_play);
+        this.stopButton.addClass(this.options.button_stop);
+        $('.popup span#next i').addClass(this.options.button_next);
+        $('.popup span#prev i').addClass(this.options.button_prev);
+        $('.popup span#close i').addClass(this.options.button_close);
+
+        // Hide stop button initially
+        this.stopButton.hide();
+    }
+
+    autoplay() {
+        this.playButton.on('click', () => {
+            this.startAutoplay();
+        });
+
+        this.stopButton.on('click', () => {
+            this.stopAutoplay();
+        });
+    }
+
+    startAutoplay() {
+        if (this.isPlaying) return;
+
+        this.isPlaying = true;
+        this.playButton.hide();
+        this.stopButton.show();
+        this.autoplayInterval = setInterval(() => {
+            this.next();
+        }, this.options.auto_play_speed);
+    }
+
+    stopAutoplay() {
+        clearInterval(this.autoplayInterval);
+        this.isPlaying = false;
+        this.playButton.show();
+        this.stopButton.hide();
+    }
+}
+
+/* ***** */
+/* USE GALLERY CLASS */
+/* ***** */
+
+$(function () {
+    let popup = new Gallery({
+        next_by_click_img: true,
+        speed: 400,
+        auto_play_speed: 2000
+    });
+
+    $('.gallery img').on('click', function () {
+        popup.open('.gallery img', this);
+    });
+});
+
+</script>
+{% endblock %}

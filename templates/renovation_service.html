@@ -1,0 +1,99 @@
+{% extends 'index.html' %}{% load static %}{% block content %}
+<style>
+    .navbar .nav-link {
+        color: #000 !important;
+        /* Change link colors to match the white background */
+    }
+</style>
+<!-- Page Header Start -->
+<div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <h1 class="display-1 text-white animated slideInDown">Renovation</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb text-uppercase mb-0">
+                <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">Services</a></li>
+                <li class="breadcrumb-item text-primary active" aria-current="page">Renovation</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- architecture start  -->
+<div class="container-xxl py-5">
+    <div class="container-fluid">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <!-- <h4 class="section-title">Architecture</h4> -->
+            <h1 class="display-5 mb-4" style="color:#3673b2;">Home Improvement Services from <br> John's Concepts</h1>
+        </div>
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s">
+            <h4 class="section-title">Rejuvenate Your Living Area, Re-Invent Your Life</h4>
+            <p class="mb-4">At John's Concepts, we believe in breathing life into spaces that you already own. So, whether it's updating the look of a new kitchen, adding more space to your living room, or reimagining your whole house, our renovation services aim at improving and reshaping your property with style and precision. From concept to completion, we handle all the details to make sure your renovation is seamless, stress-free, and turns out exactly how you envisioned it.</p>
+        </div>
+        <br>
+        <div class="row g-5">
+            <div class="col-lg-12 wow fadeInUp" data-wow-delay="0.1s">
+                <!-- Feature Start -->
+                
+                        <div class="row g-5">
+                            <div class="col-lg-7 wow fadeInUp" data-wow-delay="0.1s">
+                                <h4 class="section-title">What We Offer in Renovation</h4>
+                                <!-- <h1 class="display-5 mb-4">Why You Should Trust Us? Learn More About Us!</h1> -->
+                                <p class="mb-4">
+                                </p>
+                                <div class="row g-4">
+                                    <div class="col-12">
+                                        <div class="d-flex align-items-start">
+                                            <img class="flex-shrink-0" src="{%static 'img/icons/blueprint.png' %}"
+                                                width="60px" alt="Icon">
+                                            <div class="ms-4">
+                                                <h3>Home Renovations</h3>
+                                                <p class="mb-0">Give your home that fresh feeling with our experienced renovation service that includes kitchen remodeling, bathroom renovation, and more.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="d-flex align-items-start">
+                                            <img class="flex-shrink-0" src="{%static 'img/icons/interior_arch.png' %}"
+                                                width="60px" alt="Icon">
+                                            <div class="ms-4">
+                                                <h3>Commercial Renovations</h3>
+                                                <p class="mb-0">Make better use of your commercial space through improvements that add to the functional, aesthetic, and experiential qualities of any site.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="d-flex align-items-start">
+                                            <img class="flex-shrink-0" src="{%static 'img/icons/living-room.png' %}"
+                                                width="60px" alt="Icon">
+                                            <div class="ms-4">
+                                                <h3>Interior & Exterior Renovations</h3>
+                                                <p class="mb-0">Whether it be a fresh coat of paint, new flooring, or a complete exterior facelift, you're covered with us.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.5s">
+                                <div class="feature-img">
+                                    <img class="img-fluid" src="{%static 'img\renovation.jpg' %}" alt="">
+                                    <img class="img-fluid" src="{%static 'img\About_interior2.jpg' %}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                
+                <!-- Feature End -->
+            </div>
+
+            <div class="col-lg-12 mb-5"></div>
+            
+        </div>
+    </div>
+</div>
+
+<!-- architecture end  -->
+
+
+{% endblock %}
