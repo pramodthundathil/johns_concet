@@ -1,0 +1,71 @@
+{% extends 'index.html' %}{% load static %}{% block content %}
+<style>
+    .navbar .nav-link {
+        color: #000 !important;
+        /* Change link colors to match the white background */
+    }
+    .gallery{
+        width: 90%;
+        margin: auto;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+
+
+    }
+    .gallery video{
+        width: 100%;
+    }
+
+    
+</style>
+
+
+
+<!-- Page Header Start -->
+<div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <h1 class="display-1 text-white animated slideInDown">Testimonial</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb text-uppercase mb-0">
+                <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">Services</a></li>
+                <li class="breadcrumb-item text-primary active" aria-current="page">Testimonial</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<section class="from-blog spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="section-title from-blog__title">
+                    <h2 style="color: #3673b2;">Testimonial</h2>
+                </div>
+            </div>
+        </div>
+        <!-- gallery nav and tab  -->
+
+
+
+<div class="row mt-4">
+    {% for item in testimonial %}
+    <div class="col-md-6">
+        <div class="wrap">
+            <div class="gallery wow fadeInLeft"> 
+                <video controls autoplay muted loop src="{{item.video.url}}" alt=""></video>
+                <h3 class="text-center text-primary mb-4">Client: {{item.client}}</h3>
+                
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+        
+    </div>
+</section>
+
+   
+
+{% endblock %}

@@ -204,6 +204,8 @@
                 type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Interior</button>
             <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
                 type="button" role="tab" aria-controls="nav-contact" aria-selected="false">On going works</button>
+                <button class="nav-link" id="nav-other-tab" data-bs-toggle="tab" data-bs-target="#nav-other"
+                type="button" role="tab" aria-controls="nav-other" aria-selected="false">Other</button>
         </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
@@ -212,23 +214,44 @@
         
         	<div class="wrap">
                 <div class="gallery">
-                    <img src="https://tex1712.github.io/repo/gallery/images/img_1.jpg"  alt="">
+                    {% for item in architecture %}
+                    <img src="{{item.image.url}}"  alt="">
+                    {% endfor %}
                     
-                    <img src="https://tex1712.github.io/repo/gallery/images/img_2.jpg"  alt="">
-                    <img src="https://tex1712.github.io/repo/gallery/images/img_3.jpg"  alt="">
-                    <img src="https://tex1712.github.io/repo/gallery/images/img_4.jpg"  alt="">
-                    <img src="https://tex1712.github.io/repo/gallery/images/img_5.jpg" alt="">
-                    <img src="https://tex1712.github.io/repo/gallery/images/img_6.jpg"  alt="">
-                    <img src="https://tex1712.github.io/repo/gallery/images/img_7.jpg" alt="">
-                    <img src="https://tex1712.github.io/repo/gallery/images/img_8.jpg" alt="">
+                    
                 </div>
             </div>
         </div>
         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-
-            
+            <div class="wrap">
+                <div class="gallery">
+                    {% for item in interior %}
+                    <img src="{{item.image.url}}"  alt="">
+                    {% endfor %}
+                    
+                    
+                </div>
+            </div>  
         </div>
-        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">...
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+            <div class="wrap">
+                <div class="gallery">
+                    {% for item in ongoingworks %}
+                    <img src="{{item.image.url}}"  alt="">
+                    {% endfor %}
+                </div>
+            </div>  
+        </div>
+        <div class="tab-pane fade" id="nav-other" role="tabpanel" aria-labelledby="nav-other-tab" tabindex="0">
+            <div class="wrap">
+                <div class="gallery">
+                    {% for item in other %}
+                    <img src="{{item.image.url}}"  alt="">
+                    {% endfor %}
+                    
+                    
+                </div>
+            </div>  
         </div>
     </div>
 </div>

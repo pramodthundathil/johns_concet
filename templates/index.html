@@ -18,6 +18,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Teko:wght@400;500;600&display=swap"
         rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -86,6 +88,79 @@
             }
 
         }
+
+        /* social links */
+
+        .me {
+            width: 100px;
+            margin: 90px auto;
+        }
+
+        .me p,
+        .me h1 {
+            letter-spacing: 3px;
+            text-align: center;
+        }
+
+        .me p {
+            font-weight: 200;
+        }
+
+        .me span {
+            font-weight: bold;
+        }
+
+        .social {
+            position: fixed;
+            top: 100px;
+            left: 15px;
+            z-index: 2;
+        }
+
+        .social ul {
+            padding: 0px;
+            transform: translate(-270px, 0);
+        }
+
+        .social ul li {
+            display: block;
+            margin: 5px;
+            background: rgba(0, 0, 0, 0.36);
+            width: 300px;
+            text-align: right;
+            padding: 10px;
+            border-radius: 0 30px 30px 0;
+            transition: all 1s;
+        }
+
+        .social ul li:hover {
+            transform: translate(110px, 0);
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .social ul li:hover a {
+            color: #000;
+        }
+
+        .social ul li:hover i {
+            color: #fff;
+            background: rgba(0, 0, 0, 0.36);
+            transform: rotate(360deg);
+            transition: all 1s;
+        }
+
+        .social ul li i {
+            margin-left: 10px;
+            color: #000;
+            background: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 20px;
+            background: #ffffff;
+            transform: rotate(0deg);
+        }
     </style>
 </head>
 
@@ -99,8 +174,6 @@
             width="50px " alt="Icon">
     </div>
     <!-- Spinner End -->
-
-
     <!-- Topbar Start -->
     <!-- <div class="container-fluid bg-dark p-0 wow fadeIn" data-wow-delay="0.1s">
         <div class="row gx-0 d-none d-lg-flex">
@@ -138,7 +211,7 @@
                         <a href="#" class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown">About Us</a>
                         <div class="dropdown-menu border-0 m-0">
                             <a href="{%url 'AboutUs' %}" class="dropdown-item">Company Profile</a>
-                            <a href="" class="dropdown-item">Testimonial</a>
+                            <a href="{%url 'Testimonial' %}" class="dropdown-item">Testimonial</a>
                             <a href="{%url 'AboutUs' %}#leader" class="dropdown-item">Leadership</a>
 
                         </div>
@@ -150,18 +223,19 @@
                             <a href="{%url 'Service_InteriorDesign' %}" class="dropdown-item">Interior Design</a>
                             <a href="{%url 'Service_Civil_Construction' %}" class="dropdown-item">Civil Construction</a>
                             <a href="{%url 'Service_Renovation' %}" class="dropdown-item">Renovation</a>
-                            <a href="#" class="dropdown-item">Real Estate</a>
+                            <a href="{%url 'Realestate_Renovation' %}" class="dropdown-item">Real Estate</a>
 
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown">Projects</a>
                         <div class="dropdown-menu border-0 m-0">
-                            <a href="{%url 'Projects' %}" class="dropdown-item">Apartments</a>
-                            <a href="{%url 'Projects' %}" class="dropdown-item">Residence</a>
-                            <a href="{%url 'Projects' %}" class="dropdown-item">Commercial</a>
-                            <a href="{%url 'Projects' %}" class="dropdown-item">Office</a>
-                            <a href="{%url 'Projects' %}" class="dropdown-item">Renovation</a>
+                            <a href="{%url 'Projects_Residence' %}" class="dropdown-item">Residence</a>
+                            <a href="{%url 'Projects_Apartments' %}" class="dropdown-item">Apartments</a>
+                            <a href="{%url 'Projects_Commercial' %}" class="dropdown-item">Commercial</a>
+                            <a href="{%url 'Projects_Office' %}" class="dropdown-item">Office</a>
+                            <a href="{%url 'Projects_Renovation' %}" class="dropdown-item">Renovation</a>
+                            <!-- <a href="{%url 'Projects_' %}" class="dropdown-item">Real Estate</a> -->
 
                         </div>
                     </div>
@@ -185,8 +259,8 @@
 
                         </div>
                     </div>
-                    <a href="{%url 'Blog' %}" class="nav-item nav-link text-white">Blog</a>
-                    <a href="" class="nav-item nav-link text-white">Careers</a>
+                    <a href="{%url 'Blogs' %}" class="nav-item nav-link text-white">Blog</a>
+                    <a href="{%url 'Careers' %}" class="nav-item nav-link text-white">Careers</a>
                     <a href="{%url 'Contact' %}" class="nav-item nav-link text-white">Contact</a>
 
                 </div>
@@ -205,13 +279,20 @@
     </nav>
     <!-- Navbar End -->
 
-
+    <nav class="social">
+        <ul>
+            <li><a href="https://www.facebook.com/johnsconcepts?sfnsn=wa" target="_blank">FaceBook <i
+                        class="bi bi-facebook"></i></a></li>
+            <li><a href="https://www.instagram.com/johns_concepts?utm_source=qr&igsh=MXc5dmhwOXpocjZybA=="
+                    target="_blank">Instagram <i class="bi bi-instagram"></i></a></li>
+            <li><a href="https://youtube.com/@johnsconcepts?si=gOjRXw81ll6Bo-mA" target="_blank">Youtube <i
+                        class="bi bi-youtube"></i></a></li>
+        </ul>
+    </nav>
     {% block content %}
 
-
-    <!-- carousel Start  -->
-
-    <div id="carouselExampleCaptions" class="carousel slide">
+    <!-- Carousel Start -->
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
                 aria-current="true" aria-label="Slide 1"></button>
@@ -221,61 +302,43 @@
                 aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <video autoplay loop muted style="object-fit:cover !important ;" class="d-flex w-100">
-                    <!-- <source src="{%static 'img/evjhonsvideo.mp4' %}" type="video/mp4"> -->
-                    <source src="{{video.video.url}}" type="video/mp4">
+            {% for item in video %}
+            <div class="carousel-item {% if forloop.first %} active {% endif %}" data-bs-interval="15000">
+                <!-- default interval for video -->
+                <video autoplay loop muted style="object-fit:cover !important;" class="d-flex w-100"
+                    id="video-{{forloop.counter}}">
+                    <source src="{{item.video.url}}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
                 <div class="owl-carousel-inner">
                     <div class="container">
                         <div class="row justify-content-start">
                             <div class="col-10 col-lg-8">
-                                <h1 class="display-4 text-white animated slideInDown">{{video.caption}}</h1>
-                                <!-- <p class="fs-5 fw-medium text-white mb-4 pb-3">Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea elitr.</p> -->
-                                <a href="{%url 'AboutUs' %}" class="btn btn-primary py-3 px-5 animated slideInLeft">Read More</a>
+                                <h1 class="display-4 text-white animated slideInDown">{{item.caption}}</h1>
+                                <a href="{%url 'AboutUs' %}" class="btn btn-primary py-3 px-5 animated slideInLeft">Read
+                                    More</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="carousel-item">
-                <img class="img-fluid d-block w-100" src="{%static 'img/carousel-2.jpg' %}" alt="">
-                <!-- <div class="carousel-caption d-none d-md-block"> -->
+            {% endfor %}
+            {% for item2 in pictures %}
+            <div class="carousel-item" data-bs-interval="11000"> <!-- 11 seconds for images -->
+                <img class="img-fluid d-block w-100" src="{{item2.pictures.url}}" alt="">
                 <div class="owl-carousel-inner">
                     <div class="container">
                         <div class="row justify-content-start">
                             <div class="col-10 col-lg-8">
-                                <h1 class="display-4 text-white animated slideInDown">Best Architecture And Interior
-                                    Design Services</h1>
-                                <!-- <p class="fs-5 fw-medium text-white mb-4 pb-3">Vero elitr justo clita lorem. Ipsum dolor
-                                    at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea
-                                    elitr.</p> -->
-                                <a href="{%url 'AboutUs' %}" class="btn btn-primary py-3 px-5 animated slideInLeft">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- </div> -->
-            </div>
-            <div class="carousel-item">
-                <img class="img-fluid d-block w-100" src="{%static 'img/carousel-3.jpg' %}" alt="">
-
-                <div class="owl-carousel-inner">
-                    <div class="container">
-                        <div class="row justify-content-start">
-                            <div class="col-10 col-lg-8">
-                                <h1 class="display-4 text-white animated slideInDown">Best Architecture And Interior
-                                    Design Services</h1>
-                                <!-- <p class="fs-5 fw-medium text-white mb-4 pb-3">Vero elitr justo clita lorem. Ipsum dolor
-                                at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea
-                                elitr.</p>  -->
-                                <a href="{%url 'AboutUs' %}" class="btn btn-primary py-3 px-5 animated slideInLeft">Read More</a>
+                                <h1 class="display-4 text-white animated slideInDown">{{item2.caption}}</h1>
+                                <a href="{%url 'AboutUs' %}" class="btn btn-primary py-3 px-5 animated slideInLeft">Read
+                                    More</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
             data-bs-slide="prev">
@@ -288,8 +351,8 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
+    <!-- Carousel end -->
 
-    <!-- Carousel end  -->
 
 
     <!-- Facts Start -->
@@ -302,8 +365,9 @@
                             <img src="{%static 'img/icons/compass.png' %}" alt="Icon" width="60px">
                         </div>
                         <h3 class="mb-3">Design Approach</h3>
-                        <p class="mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet
-                            diam sed stet.
+                        <p class="mb-0">Expertly crafting innovative construction and interior design solutions that
+                            blend functionality, aesthetics, and sustainability to transform spaces with precision and
+                            style.
                         </p>
                     </div>
                 </div>
@@ -315,8 +379,8 @@
 
                         </div>
                         <h3 class="mb-3">Innovative Solutions</h3>
-                        <p class="mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet
-                            diam sed stet.
+                        <p class="mb-0">Expert Construction and Interior Design Solutions: Transforming Spaces with
+                            Innovation and Quality Craftsmanship
                         </p>
                     </div>
                 </div>
@@ -326,8 +390,8 @@
                             <img src="{%static 'img/icons/project-management.png' %}" alt="Icon" width="60px">
                         </div>
                         <h3 class="mb-3">Project Management</h3>
-                        <p class="mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet
-                            diam sed stet.
+                        <p class="mb-0">Expert project management for seamless construction and interior design,
+                            delivering on-time, within budget, and with exceptional quality.
                         </p>
                     </div>
                 </div>
@@ -354,15 +418,43 @@
                         innovative designs with exceptional quality.</p>
                     <p class="mb-4">With a legacy of over three decades, our team of 500+ professionals transforms your
                         dreams into reality, ensuring every detail is crafted to perfection.</p>
-                    <div class="d-flex align-items-center mb-5">
-                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center border border-5 border-primary"
-                            style="width: 120px; height: 120px;">
-                            <h1 class="display-4 mb-n2" data-toggle="counter-up" id="yeargap"></h1>
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex align-items-center mb-5">
+                                <div class="d-flex flex-shrink-0 align-items-center justify-content-center border border-5 border-primary"
+                                    style="width: 60px; height: 60px;">
+                                    <h3 class="mb-n2" data-toggle="counter-up" id="yeargap"></h3>
+                                </div>
+                                <div class="ps-4">
+                                    <h6>Years Working</h6>
+
+                                    <h6 class="mb-0">Experience</h6>
+                                </div>
+                            </div>
                         </div>
-                        <div class="ps-4">
-                            <h3>Years</h3>
-                            <h3>Working</h3>
-                            <h3 class="mb-0">Experience</h3>
+                        <div class="col">
+                            <div class="d-flex align-items-center mb-5">
+                                <div class="d-flex flex-shrink-0 align-items-center justify-content-center border border-5 border-primary"
+                                    style="width: 60px; height: 60px;">
+                                    <h3 class="mb-n2" data-toggle="counter-up">430</h3>
+                                </div>
+                                <div class="ps-4">
+                                    <h6>Completed</h6>
+                                    <h6 class="mb-0">Projects</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-flex align-items-center mb-5">
+                                <div class="d-flex flex-shrink-0 align-items-center justify-content-center border border-5 border-primary"
+                                    style="width: 60px; height: 60px;">
+                                    <h3 class="mb-n2" data-toggle="counter-up">500</h3>
+                                </div>
+                                <div class="ps-4">
+                                    <h6>Professionals </h6>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <a class="btn btn-primary py-3 px-5" href="">Read More</a>
@@ -387,9 +479,10 @@
                         <div class="service-text p-5">
                             <img class="mb-4" src="{%static 'img/icons/blueprint.png' %}" width="60px" alt="Icon">
                             <h3 class="mb-3">Architecture</h3>
-                            <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam
-                                stet diam sed stet.</p>
-                            <a class="btn" href="{%url 'Service_Architecture' %}"><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+                            <p class="mb-4">Professional architecture services for innovative, sustainable, and
+                                functional construction solutions</p>
+                            <a class="btn" href="{%url 'Service_Architecture' %}"><i
+                                    class="fa fa-plus text-primary me-3"></i>Read More</a>
                         </div>
                     </div>
                 </div>
@@ -421,9 +514,10 @@
                         <div class="service-text p-5">
                             <img class="mb-4" src="{%static 'img/icons/stairs.png' %}" width="60px" alt="Icon">
                             <h3 class="mb-3">Interior Design</h3>
-                            <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam
-                                stet diam sed stet.</p>
-                            <a class="btn" href="{%url 'Service_InteriorDesign' %}"><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+                            <p class="mb-4">Transforming spaces with expert interior design services, tailored for
+                                luxury and functionality in every construction project.</p>
+                            <a class="btn" href="{%url 'Service_InteriorDesign' %}"><i
+                                    class="fa fa-plus text-primary me-3"></i>Read More</a>
                         </div>
                     </div>
                 </div>
@@ -433,9 +527,10 @@
                         <div class="service-text p-5">
                             <img class="mb-4" src="{%static 'img/icons/renovation.png' %}" width="60px" alt="Icon">
                             <h3 class="mb-3">Renovation</h3>
-                            <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam
-                                stet diam sed stet.</p>
-                            <a class="btn" href="{%url 'Service_Renovation' %}"><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+                            <p class="mb-4">Professional renovation services transforming spaces with precision,
+                                quality, and timely execution for a flawless upgrade.</p>
+                            <a class="btn" href="{%url 'Service_Renovation' %}"><i
+                                    class="fa fa-plus text-primary me-3"></i>Read More</a>
                         </div>
                     </div>
                 </div>
@@ -445,9 +540,10 @@
                         <div class="service-text p-5">
                             <img class="mb-4" src="{%static 'img/icons/construction.png' %}" width="60px" alt="Icon">
                             <h3 class="mb-3">Construction</h3>
-                            <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam
-                                stet diam sed stet.</p>
-                            <a class="btn" href="{%url 'Service_Civil_Construction' %}"><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+                            <p class="mb-4">Professional construction services delivering quality, reliability, and
+                                precision for all your building needs.</p>
+                            <a class="btn" href="{%url 'Service_Civil_Construction' %}"><i
+                                    class="fa fa-plus text-primary me-3"></i>Read More</a>
                         </div>
                     </div>
                 </div>
@@ -463,9 +559,11 @@
             <div class="row g-5">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                     <h4 class="section-title">Why Choose Us!</h4>
-                    <h1 class="display-5 mb-4">Why You Should Trust Us? Learn More About Us!</h1>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et
-                        eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet
+                    <h1 class="display-5 mb-4">Trustworthy and Reliable - Learn More About Our Expertise!</h1>
+                    <p class="mb-4">
+                        At Johns Concept, we understand the importance of delivering value to our clients.
+                        With years of experience and a commitment to excellence, we have earned the trust of
+                        businesses and individuals alike. Here's why you can trust us:
                     </p>
                     <div class="row g-4">
                         <div class="col-12">
@@ -474,8 +572,9 @@
                                     alt="Icon">
                                 <div class="ms-4">
                                     <h3>Design Approach</h3>
-                                    <p class="mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed
-                                        diam stet diam sed stet.</p>
+                                    <p class="mb-0">Our creative team focuses on innovative design solutions that blend
+                                        functionality
+                                        with aesthetics, ensuring every project meets your goals with precision.</p>
                                 </div>
                             </div>
                         </div>
@@ -484,9 +583,10 @@
                                 <img class="flex-shrink-0" src="{%static 'img/icons/technology.png' %}" width="60px"
                                     alt="Icon">
                                 <div class="ms-4">
-                                    <h3>Innovative Solutions</h3>
-                                    <p class="mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed
-                                        diam stet diam sed stet.</p>
+                                    <h3>Cutting-Edge Technology</h3>
+                                    <p class="mb-0">We leverage the latest technological advancements to provide
+                                        innovative solutions tailored to your needs,
+                                        ensuring efficiency and effectiveness in every project.</p>
                                 </div>
                             </div>
                         </div>
@@ -495,9 +595,10 @@
                                 <img class="flex-shrink-0" src="{%static 'img/icons/project-management.png' %}"
                                     width="60px" alt="Icon">
                                 <div class="ms-4">
-                                    <h3>Project Management</h3>
-                                    <p class="mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed
-                                        diam stet diam sed stet.</p>
+                                    <h3>Expert Project Management</h3>
+                                    <p class="mb-0">Our skilled project managers ensure seamless coordination and timely
+                                        delivery,
+                                        keeping you informed and engaged throughout the process.</p>
                                 </div>
                             </div>
                         </div>
@@ -512,6 +613,7 @@
             </div>
         </div>
     </div>
+
     <!-- Feature End -->
 
 
@@ -524,107 +626,40 @@
             </div>
             <div class="row g-4 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="col-lg-4">
-                    <div class="nav nav-pills d-flex justify-content-between w-100 h-100 me-4">
-                        <button class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4 active"
-                            data-bs-toggle="pill" data-bs-target="#tab-pane-1" type="button">
-                            <h3 class="m-0">01. Modern Complex</h3>
+                    <div class="nav nav-pills d-flex flex-column w-100 h-100 me-4">
+                        {% for item in projects %}
+                        <button
+                            class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4 {% if forloop.first %}active{% endif %}"
+                            data-bs-toggle="pill" data-bs-target="#project{{ forloop.counter }}"
+                            style="height: 70px !important;" type="button">
+                            <h3 class="m-0">0{{ forloop.counter }}. {{ item.project_title }} </h3>
                         </button>
-                        <button class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4"
-                            data-bs-toggle="pill" data-bs-target="#tab-pane-2" type="button">
-                            <h3 class="m-0">02. Royal Hotel</h3>
-                        </button>
-                        <button class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4"
-                            data-bs-toggle="pill" data-bs-target="#tab-pane-3" type="button">
-                            <h3 class="m-0">03. Mexwel Buiding</h3>
-                        </button>
-                        <button class="nav-link w-100 d-flex align-items-center text-start p-4 mb-0"
-                            data-bs-toggle="pill" data-bs-target="#tab-pane-4" type="button">
-                            <h3 class="m-0">04. Shopping Complex</h3>
-                        </button>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="col-lg-8">
                     <div class="tab-content w-100">
-                        <div class="tab-pane fade show active" id="tab-pane-1">
+                        {% for item in projects %}
+                        <div class="tab-pane fade {% if forloop.first %}show active{% endif %}"
+                            id="project{{ forloop.counter }}">
                             <div class="row g-4">
                                 <div class="col-md-6" style="min-height: 350px;">
                                     <div class="position-relative h-100">
                                         <img class="position-absolute img-fluid w-100 h-100"
-                                            src="{%static 'img/project-1.jpg' %}" style="object-fit: cover;" alt="">
+                                            src="{{ item.primary_image.url }}" style="object-fit: cover;" alt="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <h1 class="mb-3">25 Years Of Experience In Architecture Industry</h1>
-                                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu
-                                        diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit
-                                        clita duo justo magna dolore erat amet</p>
-                                    <p><i class="fa fa-check text-primary me-3"></i>Design Approach</p>
-                                    <p><i class="fa fa-check text-primary me-3"></i>Innovative Solutions</p>
-                                    <p><i class="fa fa-check text-primary me-3"></i>Project Management</p>
+                                    <h1 class="mb-3">{{ item.project_title }}</h1>
+                                    <p class="mb-4">{{ item.project_subname }}</p>
+                                    <p><i class="fa fa-check text-primary me-3"></i>{{ item.land_area }}</p>
+                                    <p><i class="fa fa-check text-primary me-3"></i>{{ item.bulding_area }}</p>
+                                    <p><i class="fa fa-check text-primary me-3"></i>{{ item.location }}</p>
                                     <a href="" class="btn btn-primary py-3 px-5 mt-3">Read More</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="tab-pane-2">
-                            <div class="row g-4">
-                                <div class="col-md-6" style="min-height: 350px;">
-                                    <div class="position-relative h-100">
-                                        <img class="position-absolute img-fluid w-100 h-100"
-                                            src="{%static 'img/project-2.jpg' %}" style="object-fit: cover;" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <h1 class="mb-3">25 Years Of Experience In Architecture Industry</h1>
-                                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu
-                                        diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit
-                                        clita duo justo magna dolore erat amet</p>
-                                    <p><i class="fa fa-check text-primary me-3"></i>Design Approach</p>
-                                    <p><i class="fa fa-check text-primary me-3"></i>Innovative Solutions</p>
-                                    <p><i class="fa fa-check text-primary me-3"></i>Project Management</p>
-                                    <a href="" class="btn btn-primary py-3 px-5 mt-3">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="tab-pane-3">
-                            <div class="row g-4">
-                                <div class="col-md-6" style="min-height: 350px;">
-                                    <div class="position-relative h-100">
-                                        <img class="position-absolute img-fluid w-100 h-100"
-                                            src="{%static 'img/project-3.jpg' %}" style="object-fit: cover;" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <h1 class="mb-3">25 Years Of Experience In Architecture Industry</h1>
-                                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu
-                                        diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit
-                                        clita duo justo magna dolore erat amet</p>
-                                    <p><i class="fa fa-check text-primary me-3"></i>Design Approach</p>
-                                    <p><i class="fa fa-check text-primary me-3"></i>Innovative Solutions</p>
-                                    <p><i class="fa fa-check text-primary me-3"></i>Project Management</p>
-                                    <a href="" class="btn btn-primary py-3 px-5 mt-3">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="tab-pane-4">
-                            <div class="row g-4">
-                                <div class="col-md-6" style="min-height: 350px;">
-                                    <div class="position-relative h-100">
-                                        <img class="position-absolute img-fluid w-100 h-100"
-                                            src="{%static 'img/project-4.jpg' %}" style="object-fit: cover;" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <h1 class="mb-3">25 Years Of Experience In Architecture Industry</h1>
-                                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu
-                                        diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit
-                                        clita duo justo magna dolore erat amet</p>
-                                    <p><i class="fa fa-check text-primary me-3"></i>Design Approach</p>
-                                    <p><i class="fa fa-check text-primary me-3"></i>Innovative Solutions</p>
-                                    <p><i class="fa fa-check text-primary me-3"></i>Project Management</p>
-                                    <a href="" class="btn btn-primary py-3 px-5 mt-3">Read More</a>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -636,90 +671,11 @@
 
 
 
-    <!-- Appointment Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <h4 class="section-title">Appointment</h4>
-                    <h1 class="display-5 mb-4">Make An Appointment To Start Your Dream Project</h1>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et
-                        eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet
-                    </p>
-                    <div class="row g-4">
-                        <div class="col-12">
-                            <div class="d-flex">
-                                <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-light"
-                                    style="width: 65px; height: 65px;">
-                                    <i class="fa fa-2x fa-phone-alt text-primary"></i>
-                                </div>
-                                <div class="ms-4">
-                                    <p class="mb-2">Call Us Now</p>
-                                    <h3 class="mb-0">+012 345 6789</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="d-flex">
-                                <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-light"
-                                    style="width: 65px; height: 65px;">
-                                    <i class="fa fa-2x fa-envelope-open text-primary"></i>
-                                </div>
-                                <div class="ms-4">
-                                    <p class="mb-2">Mail Us Now</p>
-                                    <h3 class="mb-0">info@example.com</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="row g-3">
-                        <div class="col-12 col-sm-6">
-                            <input type="text" class="form-control" placeholder="Your Name" style="height: 55px;">
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <input type="email" class="form-control" placeholder="Your Email" style="height: 55px;">
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <input type="text" class="form-control" placeholder="Your Mobile" style="height: 55px;">
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <select class="form-select" style="height: 55px;">
-                                <option selected>Choose Service</option>
-                                <option value="1">Service 1</option>
-                                <option value="2">Service 2</option>
-                                <option value="3">Service 3</option>
-                            </select>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="date" id="date" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" placeholder="Choose Date"
-                                    data-target="#date" data-toggle="datetimepicker" style="height: 55px;">
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="time" id="time" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" placeholder="Choose Date"
-                                    data-target="#time" data-toggle="datetimepicker" style="height: 55px;">
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <textarea class="form-control" rows="5" placeholder="Message"></textarea>
-                        </div>
-                        <div class="col-12">
-                            <button class="btn btn-primary w-100 py-3" type="submit">Book Appointment</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Appointment End -->
+
 
 
     <!-- Testimonial Start -->
-    <div class="container-xxl py-5">
+    <!-- <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                 <h4 class="section-title">Testimonial</h4>
@@ -752,7 +708,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Testimonial End -->
     {% endblock %}
 
@@ -760,56 +716,47 @@
     <div class="container-fluid bg-dark text-body footer mt-5 pt-5 px-0 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <h3 class="text-light mb-4">Address</h3>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>Manjummel, Eloor,Kerala, India
+                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>Convent Road, Manjummel, Eloor,Kerala, India
                     </p>
-                    <p class="mb-2"><i class="fa fa-phone-alt text-primary me-3"></i>+91 8075583452</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt text-primary me-3"></i>+91 80755 83452</p>
                     <p class="mb-2"><i class="fa fa-envelope text-primary me-3"></i>johnsconceptskochi@gmail.com</p>
                     <div class="d-flex pt-2">
-                        <a class="btn btn-square btn-outline-body me-1" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square btn-outline-body me-1" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square btn-outline-body me-1" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-square btn-outline-body me-0" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-square btn-outline-body me-1" href="https://www.instagram.com/johns_concepts?utm_source=qr&igsh=MXc5dmhwOXpocjZybA==" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-square btn-outline-body me-1" href="https://www.facebook.com/johnsconcepts?sfnsn=wa" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-outline-body me-1" href="https://youtube.com/@johnsconcepts?si=gOjRXw81ll6Bo-mA"><i class="fab fa-youtube"></i></a>
+                        <!-- <a class="btn btn-square btn-outline-body me-0" href=""><i class="fab fa-linkedin-in"></i></a> -->
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <h3 class="text-light mb-4">Services</h3>
-                    <a class="btn btn-link" href="">Architecture</a>
-                    <a class="btn btn-link" href="">3D Animation</a>
-                    <a class="btn btn-link" href="">House Planning</a>
-                    <a class="btn btn-link" href="">Interior Design</a>
-                    <a class="btn btn-link" href="">Construction</a>
+                    <a class="btn btn-link" href="{%url 'Service_Architecture' %}">Architecture</a>
+                    <a class="btn btn-link" href="{%url 'Service_InteriorDesign' %}">Interior Design</a>
+                    <a class="btn btn-link" href="{%url 'Service_Civil_Construction' %}">Civil Construction</a>
+                    <a class="btn btn-link" href="{%url 'Service_Renovation' %}">Renovation</a>
+                    <a class="btn btn-link" href="{%url 'Realestate_Renovation' %}">Real Estate</a>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <h3 class="text-light mb-4">Quick Links</h3>
                     <a class="btn btn-link" href="{%url 'AboutUs' %}">About Us</a>
-                    <a class="btn btn-link" href="">Contact Us</a>
-                    <a class="btn btn-link" href="">Our Services</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
-                    <a class="btn btn-link" href="">Support</a>
+                    <a class="btn btn-link" href="{%url 'Contact' %}">Contact Us</a>
+                    <a class="btn btn-link" href="{%url 'Blogs' %}">Blog</a>
+                    <a class="btn btn-link" href="{%url 'Careers' %}">Career</a>
+                    <a class="btn btn-link" href="{%url 'Index' %}">Home</a>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <h3 class="text-light mb-4">Newsletter</h3>
-                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-                    <div class="position-relative mx-auto" style="max-width: 400px;">
-                        <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text"
-                            placeholder="Your email">
-                        <button type="button"
-                            class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
-                    </div>
-                </div>
+                
             </div>
         </div>
         <div class="container-fluid copyright">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a href="#">JOHNSCONCEPTS.IN</a>, All Right Reserved.
+                        &copy; <a href="">JOHNSCONCEPTS.IN</a>, All Right Reserved.
                     </div>
                     <div class="col-md-6 text-center text-md-end">
                         <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                        Designed By <a href="">BYTEBOOT</a>
+                        Designed By <a href="https://www.byteboot.in/">BYTEBOOT</a>
                     </div>
                 </div>
             </div>
@@ -831,6 +778,33 @@
         let yearGap = currentYear - givenYear;
 
         document.getElementById("yeargap").innerHTML = yearGap
+
+    </script>
+    <script>
+            < script >
+            document.addEventListener('DOMContentLoaded', function () {
+                // Get all video elements
+                const videos = document.querySelectorAll('video');
+
+                videos.forEach(function (video, index) {
+                    // Once video metadata is loaded, set carousel interval based on video duration
+                    video.onloadedmetadata = function () {
+                        const duration = Math.floor(video.duration * 1000); // Convert seconds to milliseconds
+                        const parentCarouselItem = video.closest('.carousel-item');
+                        if (parentCarouselItem) {
+                            parentCarouselItem.setAttribute('data-bs-interval', duration);
+                        }
+                    };
+                });
+
+                // Initialize the carousel with default options
+                const myCarousel = new bootstrap.Carousel(document.getElementById('carouselExampleCaptions'), {
+                    interval: 5000, // Default fallback interval
+                    ride: false, // Prevent automatic cycling
+                    pause: 'hover'
+                });
+            });
+    </script>
 
     </script>
 

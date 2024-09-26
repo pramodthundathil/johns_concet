@@ -1,0 +1,96 @@
+{% extends 'index.html' %}{% load static %}{% block content %}
+<style>
+    .navbar .nav-link {
+        color: #000 !important;
+    }
+    .image {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .images img {
+        aspect-ratio: 16 / 9;
+        height: auto;
+        width: 100%;
+    }
+
+    .fleximages img {
+        width: 150px !important; /* Set a fixed width for the thumbnails */
+    }
+    .images-container{
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+    .image-item{
+        width:250px;
+        overflow: hidden;
+        height: 200px;
+        margin: 10px;
+
+    }
+    .image-item img{
+        width: 100%;
+        object-fit: cover;
+        aspect-ratio: 16 / 9;
+        height: auto;
+    }
+    /* Responsive design for mobile screens */
+    @media (max-width: 650px) {
+        .images img {
+            aspect-ratio: 16 / 9;
+            height: auto;
+        }
+
+        .fleximages img {
+            width: 100px !important; /* Reduce size of thumbnails on small screens */
+        }
+
+        .nav-tabs button {
+            font-size: small;
+        }
+
+        .text-center h3 {
+            font-size: 18px; /* Reduce font size for smaller screens */
+        }
+
+        .d-flex h5, .d-flex h6 {
+            font-size: 14px;
+        }
+
+        .section-title {
+            font-size: 24px; /* Adjust the section title size on mobile */
+        }
+    }
+
+
+    /* Adjust spacing for larger screens */
+    @media (min-width: 992px) {
+        .fleximages img {
+            width: 200px !important;
+        }
+    }
+</style>
+
+
+<div class="container mt-5">
+    <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+        <h4 class="section-title">{{blog.blogtitle}}</h4>
+    </div>
+
+    <div class="row">
+        <!-- Left Column with the main image -->
+        <div class="col-md-6">
+            <div class="images">
+                <div class="image mb-5">
+                    <img id="primaryImage" class="wow fadeInLeft" src="{{blog.image.url}}" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <p style="text-align: justify;">{{blog.description}}</p>
+        </div>
+    </div>
+</div>
+
+    {% endblock%}

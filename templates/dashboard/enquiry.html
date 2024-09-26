@@ -1,0 +1,62 @@
+{% extends 'dashboard/index.html' %}{% load static %}{% block admin %}
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4">Enquiries</h5>
+            {% for message in messages %}
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <strong></strong> {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+
+         
+            <h5 class="card-title fw-semibold mb-4">Enquiry</h5>
+            <div class="card">
+                <div class="card-body p-4">
+                    <table class="table table-stripped">
+                        <tr>
+                            <th>First Name</th>
+                            <th>Phone</th>
+                            <th>Subject</th>
+                            <th>Message</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                        {% for item in enquiry %}
+                        <tr>
+                            <td>
+                                {{item.name}}
+                            </td>
+                            <td>{{item.phone}}</td>
+                            <td>{{item.subject}}</td>
+                            <td>{{item.message}}</td>
+                            <td>{{item.date}}</td>
+                            <td>
+                                <!-- <a href="" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" data-bs-custom-class="custom-tooltip"
+                                    data-bs-title="Edit Job" class="text-info" style="font-size: 20px !important;">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a> -->
+                                <a href="{%url 'DeleteEnquiry' item.id %}"
+                                    onclick="return confirm('Are you want to delete this Enquiry Permanently ?')"
+                                    class="text-danger" style="font-size: 20px !important;">
+                                    <i class="bi bi-trash3"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    
+</div>
+
+
+    {% endblock %}

@@ -1,0 +1,517 @@
+{% extends 'index.html' %}{% load static %}{% block content %}
+<style>
+    .navbar .nav-link {
+        color: #000 !important;
+    }
+
+    .image {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .images img {
+        aspect-ratio: 16 / 9;
+        height: auto;
+        width: 100%;
+    }
+
+    .fleximages img {
+        width: 150px !important; /* Set a fixed width for the thumbnails */
+    }
+    .images-container{
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+    .image-item{
+        width:250px;
+        overflow: hidden;
+        height: 200px;
+        margin: 10px;
+
+    }
+    .image-item img{
+        width: 100%;
+        object-fit: cover;
+        aspect-ratio: 16 / 9;
+        height: auto;
+    }
+    /* Responsive design for mobile screens */
+    @media (max-width: 650px) {
+        .images img {
+            aspect-ratio: 16 / 9;
+            height: auto;
+        }
+
+        .fleximages img {
+            width: 100px !important; /* Reduce size of thumbnails on small screens */
+        }
+
+        .nav-tabs button {
+            font-size: small;
+        }
+
+        .text-center h3 {
+            font-size: 18px; /* Reduce font size for smaller screens */
+        }
+
+        .d-flex h5, .d-flex h6 {
+            font-size: 14px;
+        }
+
+        .section-title {
+            font-size: 24px; /* Adjust the section title size on mobile */
+        }
+    }
+
+
+    /* Adjust spacing for larger screens */
+    @media (min-width: 992px) {
+        .fleximages img {
+            width: 200px !important;
+        }
+    }
+         /* ***** */
+/* GALLERY STYLES */
+/* ***** */
+
+/*Overlay styles*/
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #000;
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.open {
+  visibility: visible;
+  opacity: 1;
+}
+
+/*Popup window styles*/
+.popup {
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 5px;
+  position: relative;
+  z-index: 10;
+  max-width: 70%;
+  height: auto;
+  overflow: hidden;
+}
+
+.popup img {
+  margin: 0 auto;
+  opacity: 0;
+  width: 100%;
+  height: auto;
+  display: none;
+}
+
+/*Buttons styles*/
+
+.popup span#close {
+  position: fixed;
+  top: 20px;
+  right: 40px;
+  transition: all 200ms;
+  font-size: 40px;
+  font-weight: bold;
+  color: #fff;
+  z-index: 100;
+  cursor: pointer;
+}
+.popup span#next {
+  position: fixed;
+  top: 50%;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 70px;
+  font-weight: bold;
+  color: #fff;
+  z-index: 100;
+  cursor: pointer;
+}
+
+.popup span#prev {
+  position: fixed;
+  top: 50%;
+  left: 30px;
+  transition: all 200ms;
+  font-size: 70px;
+  font-weight: bold;
+  color: #fff;
+  z-index: 100;
+  cursor: pointer;
+}
+
+
+.popup .play_wrap {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  transition: all 200ms;
+  padding-bottom: 30px;
+  padding-top: 35px;
+  opacity: 0;
+  z-index: 101;
+}
+
+.popup .play_wrap:hover{
+  opacity: 1;
+  background-color: rgba(204,204,204, 0.8);
+}
+
+.popup .play_wrap span {
+  font-size: 60px;
+}
+
+.popup .play_wrap span#stop {
+  display: none;
+}
+
+.popup .play_wrap span#play:hover, .popup .play_wrap span#stop:hover {
+  color: #1F6FEB;
+  cursor: pointer;
+}
+
+
+.popup .play_wrap span i {
+  margin-left: 5px;
+  cursor: pointer;
+  transition: all 200ms;
+  color: #fff;
+}
+
+
+.popup span#next:hover, .popup span#prev:hover, .popup span#close:hover {
+  color: #1F6FEB;
+  border-color: #1F6FEB;
+}
+
+/* ***** */
+/* PAGE STYLES */
+/* ***** */
+
+.wrap {
+	display: flex;
+	justify-content: center;
+	max-width: 1200px;
+	margin: 50px auto;
+}
+
+.gallery {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.gallery img {
+	width: calc(100% * (1/4) - 10px - 1px);
+	height: auto;
+  	margin-bottom: 15px;
+	cursor: pointer;
+}
+
+.gallery .gallary_block img:last-child {
+	margin-right: 0;
+}
+
+.gallery .gallary_block {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 15px;
+}
+</style>
+
+<div class="container mt-5">
+    <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+        <h4 class="section-title">{{project.project_title}}</h4>
+    </div>
+
+    <div class="row">
+        <!-- Left Column with the main image -->
+        <div class="col-md-6">
+            <div class="images">
+                <div class="image mb-5">
+                    <img id="primaryImage" class="wow fadeInLeft" src="{{project.primary_image.url}}" alt="">
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column with text and thumbnails -->
+        <div class="col-md-6 wow fadeInRignt">
+            <h3 class="text-center" style="color:#3673b2;">
+                {{project.project_subname}}
+            </h3>
+            <div class="d-flex" style="justify-content: space-around;">
+                <h5>Land <span class="text-info">&nbsp;&nbsp;&nbsp; {{project.land_area}}</span></h5>
+                <h5>Area <span class="text-info">&nbsp;&nbsp;&nbsp; {{project.bulding_area}}</span></h5>
+                <h6 class="text-center text-primary"><i class="bi bi-geo-alt-fill"></i> &nbsp;&nbsp;&nbsp; {{project.location}}</h6>
+            </div>
+
+            <h4 class="mt-4">Plans</h4>
+            <div class="d-flex fleximages mb-4 thumbnail-gallery" style="justify-content: space-evenly; flex-wrap: wrap;">
+                <img src="{{project.primary_image.url}}" class="img-thumbnail wow fadeInUp" alt="">
+                <img src="{{project.plan_image_1.url}}" class="img-thumbnail wow fadeInUp" alt="">
+                <img src="{{project.plan_image_2.url}}" class="img-thumbnail wow fadeInUp" alt="">
+            </div>
+            <div class="conatiner">
+                <h6>Client: {{project.client}}</h6>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabs for additional content -->
+    <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Photos</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+            <div class="images-container mt-5">
+
+                <div class="wrap">
+                    <div class="gallery">
+                        {% for item in pictures %}
+                        
+                            <img src="{{ item.image.url }}" alt="" class="img-fluid" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-slide-to="{{ forloop.counter0 }}">
+                         
+                    {% endfor %}
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Change primary image when thumbnail is clicked
+        $('.thumbnail-gallery img').click(function () {
+            var newSrc = $(this).attr('src');
+            $('#primaryImage').attr('src', newSrc);
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#carouselImages').carousel({
+            interval: 3000, // Auto-slide interval (optional)
+            pause: 'hover'  // Pause sliding when hovering (optional)
+        });
+    });
+</script>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script>
+    "use strict";
+
+class Gallery {
+
+    constructor(settings) {
+        // Slider Options
+        let defaults = {
+            next_by_click_img: true,
+            speed: 400,
+            play: true,
+            auto_play_speed: 2000,
+            button_play: 'fa fa-play-circle',
+            button_stop: 'fa fa-stop-circle',
+            button_next: 'fa fa-chevron-circle-right',
+            button_prev: 'fa fa-chevron-circle-left',
+            button_close: 'fa fa-times-circle',
+        };
+
+        this.options = $.extend(defaults, settings);
+
+        // Adding PopUp HtmlContent
+        $('body').append('<div id="overlay" class="overlay"><div class="popup" id="popupBody"></div></div>');
+        this.overlay = $('.overlay');
+        this.popup = $('.popup');
+
+        // Variable for preventing multiple clicking
+        this.isRun = false;
+        this.isPlaying = false; // Track autoplay state
+    }
+
+    open(content, image) {
+        // Open overlay
+        this.overlay.addClass('open');
+
+        // Creating buttons
+        this.popup.append('<span id="close"><i></i></span><span id="next"><i></i></span><span id="prev"><i></i></span>');
+        if (this.options.play === true) {
+            this.popup.append('<div class="play_wrap"><span id="play"><i></i></span><span id="stop"><i></i></span></div>');
+        }
+        this.closeButton = $('#close');
+        this.nextButton = $('#next');
+        this.prevButton = $('#prev');
+        this.playButton = $('#play');
+        this.stopButton = $('#stop');
+
+        // Adding content
+        this.content = $(content).clone();
+        this.popup.append(this.content);
+        this.index = $(image).index();
+
+        // Running functions
+        this.slider();
+        this.close();
+        this.styles();
+        this.autoplay();
+
+        return this;
+    }
+
+    close() {
+        this.closeButton.on('click', () => {
+            this.overlay.removeClass('open');
+            this.popup.empty();
+            this.stopAutoplay(); // Ensure autoplay is stopped when closing
+        });
+    }
+
+    slider() {
+        // Show the clicked img & adjusting sizes of popUp Window
+        this.content.eq(this.index).css('opacity', 1).css('display', 'block');
+
+        // Click on function buttons of the slider
+        this.nextButton.on('click', () => { this.next(); });
+        this.prevButton.on('click', () => { this.prev(); });
+
+        $(document).keydown((e) => {
+            if (e.which === 39) {
+                this.next();
+            }
+            if (e.which === 37) {
+                this.prev();
+            }
+        });
+
+        if (this.options.next_by_click_img !== false) {
+            this.content.on('click', () => { this.next(); });
+            this.content.css('cursor', 'pointer');
+        }
+    }
+
+    next() {
+        if (this.isRun) return;
+
+        this.isRun = true;
+
+        this.content.eq(this.index).animate({
+            'opacity': 0
+        }, this.options.speed);
+
+        this.content.eq(this.index).css('display', 'none');
+
+        this.index++;
+        if (this.index > this.content.length - 1) {
+            this.index = 0;
+        }
+
+        this.content.eq(this.index).css('display', 'block');
+        this.content.eq(this.index).animate({
+            'opacity': 1
+        }, this.options.speed, () => {
+            this.isRun = false;
+        });
+    }
+
+    prev() {
+        if (this.isRun) return;
+
+        this.isRun = true;
+
+        this.content.eq(this.index).animate({
+            'opacity': 0
+        }, this.options.speed);
+
+        this.content.eq(this.index).css('display', 'none');
+
+        this.index--;
+        if (this.index < 0) {
+            this.index = this.content.length - 1;
+        }
+
+        this.content.eq(this.index).css('display', 'block');
+        this.content.eq(this.index).animate({
+            'opacity': 1
+        }, this.options.speed, () => {
+            this.isRun = false;
+        });
+    }
+
+    styles() {
+        this.playButton.addClass(this.options.button_play);
+        this.stopButton.addClass(this.options.button_stop);
+        $('.popup span#next i').addClass(this.options.button_next);
+        $('.popup span#prev i').addClass(this.options.button_prev);
+        $('.popup span#close i').addClass(this.options.button_close);
+
+        // Hide stop button initially
+        this.stopButton.hide();
+    }
+
+    autoplay() {
+        this.playButton.on('click', () => {
+            this.startAutoplay();
+        });
+
+        this.stopButton.on('click', () => {
+            this.stopAutoplay();
+        });
+    }
+
+    startAutoplay() {
+        if (this.isPlaying) return;
+
+        this.isPlaying = true;
+        this.playButton.hide();
+        this.stopButton.show();
+        this.autoplayInterval = setInterval(() => {
+            this.next();
+        }, this.options.auto_play_speed);
+    }
+
+    stopAutoplay() {
+        clearInterval(this.autoplayInterval);
+        this.isPlaying = false;
+        this.playButton.show();
+        this.stopButton.hide();
+    }
+}
+
+/* ***** */
+/* USE GALLERY CLASS */
+/* ***** */
+
+$(function () {
+    let popup = new Gallery({
+        next_by_click_img: true,
+        speed: 400,
+        auto_play_speed: 2000
+    });
+
+    $('.gallery img').on('click', function () {
+        popup.open('.gallery img', this);
+    });
+});
+
+</script>
+
+
+{% endblock %}

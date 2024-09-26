@@ -29,6 +29,15 @@
         float: left;
         font-size: x-small;
     }
+    .clamp-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Show only 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 3em; /* Adjust this based on your line height */
+    line-height: 1.5em; /* Line height (adjust as needed) */
+}
 </style>
 <!-- Page Header Start -->
 <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
@@ -56,102 +65,27 @@
             </div>
         </div>
         <div class="row">
+            {% for item in blogs %}
             <div class="col-lg-4 col-md-4 col-sm-6 wow fadeInLeft" data-wow-delay="0.1s">
-                <div class="blog__item">
+                <div class="blog__item" style="box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;">
                     <div class="blog__item__pic">
-                        <img src="{%static 'img/blog/project-3.jpg' %}"  alt="">
+                        <img src="{{item.image.url}}"  alt="">
                     </div>
                     <div class="blog__item__text mt-3">
                         
-                        <h5><a href="#">Cooking tips make cooking simple</a></h5>
-                        <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+                        <h5><a href="{%url 'BlogSingle' item.id%}">{{item.blogtitle}}</a></h5>
+                        <p class="clamp-text" >
+                            {{item.description}}
+                        </p>
                     </div>
-                    <ul>
-                        <li><i class="bi bi-calendar-week"></i> May 4,2019</li>
+                    <ul class="mt-5">
+                        <li style="float: right;"><i class="bi bi-calendar-week"></i> {{item.date_added}}</li>
                         <!-- <li><i class="fa fa-comment-o"></i> 5</li> -->
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 wow fadeInLeft" data-wow-delay="0.1s">
-                <div class="blog__item">
-                    <div class="blog__item__pic">
-                        <img src="{%static 'img/blog/project-1.jpg' %}"  alt="">
-                    </div>
-                    <div class="blog__item__text mt-3">
-                        
-                        <h5><a href="#">Cooking tips make cooking simple</a></h5>
-                        <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                    </div>
-                    <ul>
-                        <li><i class="bi bi-calendar-week"></i> May 4,2019</li>
-                        <!-- <li><i class="fa fa-comment-o"></i> 5</li> -->
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 wow fadeInLeft" data-wow-delay="0.1s">
-                <div class="blog__item">
-                    <div class="blog__item__pic">
-                        <img src="{%static 'img/blog/project-2.jpg' %}"  alt="">
-                    </div>
-                    <div class="blog__item__text mt-3">
-                        
-                        <h5><a href="#">Cooking tips make cooking simple</a></h5>
-                        <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                    </div>
-                    <ul>
-                        <li><i class="bi bi-calendar-week"></i> May 4,2019</li>
-                        <!-- <li><i class="fa fa-comment-o"></i> 5</li> -->
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 wow fadeInLeft" data-wow-delay="0.1s">
-                <div class="blog__item">
-                    <div class="blog__item__pic">
-                        <img src="{%static 'img/blog/project-3.jpg' %}"  alt="">
-                    </div>
-                    <div class="blog__item__text mt-3">
-                        
-                        <h5><a href="#">Cooking tips make cooking simple</a></h5>
-                        <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                    </div>
-                    <ul>
-                        <li><i class="bi bi-calendar-week"></i> May 4,2019</li>
-                        <!-- <li><i class="fa fa-comment-o"></i> 5</li> -->
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 wow fadeInLeft" data-wow-delay="0.1s">
-                <div class="blog__item">
-                    <div class="blog__item__pic">
-                        <img src="{%static 'img/blog/project-1.jpg' %}"  alt="">
-                    </div>
-                    <div class="blog__item__text mt-3">
-                        
-                        <h5><a href="#">Cooking tips make cooking simple</a></h5>
-                        <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                    </div>
-                    <ul>
-                        <li><i class="bi bi-calendar-week"></i> May 4,2019</li>
-                        <!-- <li><i class="fa fa-comment-o"></i> 5</li> -->
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 wow fadeInLeft" data-wow-delay="0.1s">
-                <div class="blog__item">
-                    <div class="blog__item__pic">
-                        <img src="{%static 'img/blog/project-2.jpg' %}"  alt="">
-                    </div>
-                    <div class="blog__item__text mt-3">
-                        
-                        <h5><a href="#">Cooking tips make cooking simple</a></h5>
-                        <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                    </div>
-                    <ul>
-                        <li><i class="bi bi-calendar-week"></i> May 4,2019</li>
-                        <!-- <li><i class="fa fa-comment-o"></i> 5</li> -->
-                    </ul>
-                </div>
-            </div>
+            {% endfor %}
+            
         </div>
     </div>
 </section>
