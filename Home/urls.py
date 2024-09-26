@@ -58,6 +58,8 @@ urlpatterns = [
     path("BlogDelete/<int:pk>",views.BlogDelete,name="BlogDelete"),
     path("Enquiry",views.Enquiry,name="Enquiry"),
     path("DeleteEnquiry/<int:pk>",views.DeleteEnquiry,name="DeleteEnquiry"),
+    path("DeletepictureCarousal/<int:pk>",views.DeletepictureCarousal,name="DeletepictureCarousal"),
+    path("DeleteVideoCarousal/<int:pk>",views.DeleteVideoCarousal,name="DeleteVideoCarousal")
 
 
 

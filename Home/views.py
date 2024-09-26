@@ -305,6 +305,21 @@ def picture_slide_create(request):
 
     return redirect('HomePageEdits')
 
+
+def DeleteVideoCarousal(request, pk):
+    video = VideoSlide.objects.get(id = pk)
+    video.video.delete()
+    video.delete()
+    messages.success(request, "Video Slide Delete successfully!")
+    return redirect('HomePageEdits')
+
+def DeletepictureCarousal(request, pk):
+    Pic = PictureSlids.objects.get(id = pk)
+    Pic.pictures.delete()
+    Pic.delete()
+    messages.success(request, "Video Slide Delete successfully!")
+    return redirect('HomePageEdits')
+
 # --------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------
 
