@@ -145,8 +145,8 @@ STATIC_ROOT = os.path.join(BASE_DIR,"newstatic")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AWS_ACCESS_KEY_ID = "AKIAWLVNT2SP6S67MX6Z"
-AWS_SECRET_ACCESS_KEY = "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"
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_KEY")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_S_KEY")
 AWS_STORAGE_BUCKET_NAME = 'johnsconcept '
 AWS_S3_SIGNATURE_NAME = 's3v4',
 AWS_S3_REGION_NAME = 'ap-south-1'
