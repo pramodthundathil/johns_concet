@@ -59,10 +59,12 @@ urlpatterns = [
     path("Enquiry",views.Enquiry,name="Enquiry"),
     path("DeleteEnquiry/<int:pk>",views.DeleteEnquiry,name="DeleteEnquiry"),
     path("DeletepictureCarousal/<int:pk>",views.DeletepictureCarousal,name="DeletepictureCarousal"),
-    path("DeleteVideoCarousal/<int:pk>",views.DeleteVideoCarousal,name="DeleteVideoCarousal")
+    path("DeleteVideoCarousal/<int:pk>",views.DeleteVideoCarousal,name="DeleteVideoCarousal"),
+    path("Gallery_interior",views.Gallery_interior,name="Gallery_interior"),
+    path("Gallery_ongoing",views.Gallery_ongoing,name="Gallery_ongoing"),
 
+    path("EditBlog/<int:pk>",views.EditBlog,name="EditBlog"),
 
-
-    
+   
 
 ]

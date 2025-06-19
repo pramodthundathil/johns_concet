@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 class VideoSlide(models.Model):
@@ -88,6 +89,7 @@ class Blog(models.Model):
     blogtitle = models.CharField(max_length=100)
     image = models.FileField(upload_to='BlogImage')
     description = models.TextField()
+    body = RichTextField(null=True, blank=True)
     date_added = models.DateField(auto_now_add=True)
 
 class Enquirys(models.Model):

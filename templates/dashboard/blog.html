@@ -1,5 +1,21 @@
 {% extends 'dashboard/index.html' %}{% load static %}{% block admin %}
-
+<style>
+    input{
+        width: 100%;
+        display: block;
+        padding: 6px;
+        border-radius: 8px;
+        border: .5px solid lightblue;
+    }
+    textarea{
+        width: 100%;
+        height: 50px;
+        display: block;
+        padding: 6px;
+        border-radius: 8px;
+        border: .5px solid lightblue;
+    }
+</style>
 <div class="container-fluid">
     <div class="card">
         <div class="card-body">
@@ -31,29 +47,10 @@
                             <div class="modal-body">
 
                                 <form method="POST"  enctype="multipart/form-data">
+                                   
                                     {% csrf_token %}
-                                    <div class="mb-1">
-                                        <label for="project_title" class="form-label">Blog Title</label>
-                                        <input type="text" class="form-control" id="title" name="title"
-                                            required>
-                                    </div>
-
-                                
-
-                                    <div class="mb-1">
-                                        <label for="project_description" class="form-label">Blog Description</label>
-                                        <textarea class="form-control" id="description"
-                                            name="description" rows="3"></textarea>
-                                    </div>
-
-                                    
-                                    
-
-                                    <div class="mb-1">
-                                        <label for="primary_image" class="form-label">Primary Image</label>
-                                        <input type="file" class="form-control" id="image" name="image"
-                                            required>
-                                    </div>
+        {{form.media}}
+        {{ form.as_p }}
 
                                 
 
@@ -91,11 +88,11 @@
                             <td>{{item.description}}</td>
                             <td></td>
                             <td>
-                                <!-- <a href="" data-bs-toggle="tooltip"
+                                <a href="{%url 'EditBlog' item.id %}" data-bs-toggle="tooltip"
                                     data-bs-placement="top" data-bs-custom-class="custom-tooltip"
                                     data-bs-title="Edit Job" class="text-info" style="font-size: 20px !important;">
                                     <i class="bi bi-pencil-square"></i>
-                                </a> -->
+                                </a>
                                 <a href="{%url 'BlogDelete' item.id %}"
                                     onclick="return confirm('Are you want to delete this Blog Permanently ?')"
                                     class="text-danger" style="font-size: 20px !important;">

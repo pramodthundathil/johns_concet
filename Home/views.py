@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import *
+from .forms import BlogForm
 
 
 
@@ -81,6 +82,35 @@ def Gallery(request):
        "other":other
     }
     return render(request,"gallery.html",context)
+
+
+def Gallery_interior(request):
+    architecture = GalleryImages.objects.filter(category = "Architecture").order_by("-id")
+    interior = GalleryImages.objects.filter(category = "Interior").order_by("-id")
+    ongoingworks = GalleryImages.objects.filter(category = "Ongoingworks").order_by("-id")
+    other = GalleryImages.objects.filter(category = "Other").order_by("-id")
+
+    context ={
+       "architecture":architecture,
+       "interior":interior,
+       "ongoingworks":ongoingworks,
+       "other":other
+    }
+    return render(request,"gallery_interior.html",context)
+
+def Gallery_ongoing(request):
+    architecture = GalleryImages.objects.filter(category = "Architecture").order_by("-id")
+    interior = GalleryImages.objects.filter(category = "Interior").order_by("-id")
+    ongoingworks = GalleryImages.objects.filter(category = "Ongoingworks").order_by("-id")
+    other = GalleryImages.objects.filter(category = "Other").order_by("-id")
+
+    context ={
+       "architecture":architecture,
+       "interior":interior,
+       "ongoingworks":ongoingworks,
+       "other":other
+    }
+    return render(request,"gallery_ongoing.html",context)
 
 def Projects_(request):
     return render(request,"projects.html")
@@ -326,21 +356,28 @@ def DeletepictureCarousal(request, pk):
 
 def BlogeEdits(request):
     blogs = Blog.objects.all()
+    form = BlogForm()
     if request.method == "POST":
-        title = request.POST.get("title")
-        image = request.FILES.get("image")
-        description = request.POST.get("description")
+        # title = request.POST.get("title")
+        # image = request.FILES.get("image")
+        # description = request.POST.get("description")
+        form = BlogForm(request.POST,request.FILES)
+        if form.is_valid():
 
-        blog = Blog(
-            blogtitle = title,
-            image = image,
-            description = description
-        )
-        blog.save()
-        messages.success(request, "Blog created successfully!")
-        return redirect("BlogeEdits")
+        # blog = Blog(
+        #     blogtitle = title,
+        #     image = image,
+        #     description = description
+        # )
+            form.save()
+            messages.success(request, "Blog created successfully!")
+            return redirect("BlogeEdits")
+        else:
+            messages.error(request, "Something Wrong!!!!")
+            return redirect("BlogeEdits")
     context = {
-        "blogs":blogs
+        "blogs":blogs,
+        "form":form
     }
     return render(request,"dashboard/blog.html",context)
 
@@ -348,8 +385,23 @@ def BlogDelete(request,pk):
     blog = Blog.objects.get(id = pk)
     blog.image.delete()
     blog.delete()
-    messages.success(request, "Blog created successfully!")
+    messages.info(request, "Blog Deleted successfully!")
     return redirect("BlogeEdits")
+
+
+def EditBlog(request,pk):
+    test_model_instance = get_object_or_404(Blog, id=pk)
+    form = BlogForm(instance=test_model_instance)
+
+    if request.method == "POST":
+        form = BlogForm(request.POST, request.FILES, instance=test_model_instance)
+        if form.is_valid():
+            form.save()
+            return redirect("EditBlog",pk = pk)
+    
+     
+    return render(request,"dashboard/blogedit.html",{ "form": form,
+        "test_model": test_model_instance})
 
 
 # --------------------------------------------------------------------------------------

@@ -254,8 +254,8 @@
                         <a href="#" class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown">Gallery</a>
                         <div class="dropdown-menu border-0 m-0">
                             <a href="{%url 'Gallery' %}" class="dropdown-item">Architecture</a>
-                            <a href="{%url 'Gallery' %}#nav-profile" class="dropdown-item">Interior</a>
-                            <a href="{%url 'Gallery' %}#nav-contact" class="dropdown-item">On going works</a>
+                            <a href="{%url 'Gallery_interior' %}" class="dropdown-item">Interior</a>
+                            <a href="{%url 'Gallery_ongoing' %}" class="dropdown-item">On going works</a>
 
                         </div>
                     </div>
@@ -279,7 +279,7 @@
     </nav>
     <!-- Navbar End -->
 
-    <nav class="social">
+    <nav class="social" style="max-width: 100px;">
         <ul>
             <li><a href="https://www.facebook.com/johnsconcepts?sfnsn=wa" target="_blank">FaceBook <i
                         class="bi bi-facebook"></i></a></li>
@@ -287,6 +287,7 @@
                     target="_blank">Instagram <i class="bi bi-instagram"></i></a></li>
             <li><a href="https://youtube.com/@johnsconcepts?si=gOjRXw81ll6Bo-mA" target="_blank">Youtube <i
                         class="bi bi-youtube"></i></a></li>
+                        <li><a href="https://wa.me/916282427319?text=Hello%20John's%20Concept,%20I%20would%20like%20to%20Know%20about%20your%20services" target="_blank">Whats App <i class="bi bi-whatsapp"></i></a></li>
         </ul>
     </nav>
     {% block content %}
@@ -325,14 +326,14 @@
             {% endfor %}
             {% for item2 in pictures %}
             <div class="carousel-item" data-bs-interval="11000"> <!-- 11 seconds for images -->
-                <img class="img-fluid d-block w-100" src="{{item2.pictures.url}}" alt="">
+                <img class="img-fluid d-block w-100" style="object-fit: contain;height: 100%; overflow: hidden;" src="{{item2.pictures.url}}" alt="">
                 <div class="owl-carousel-inner">
                     <div class="container">
                         <div class="row justify-content-start">
                             <div class="col-10 col-lg-8">
-                                <h1 class="display-4 text-white animated slideInDown">{{item2.caption}}</h1>
+                                <!-- <h1 class="display-4 text-white animated slideInDown">{{item2.caption}}</h1>
                                 <a href="{%url 'AboutUs' %}" class="btn btn-primary py-3 px-5 animated slideInLeft">Read
-                                    More</a>
+                                    More</a> -->
                             </div>
                         </div>
                     </div>
@@ -720,7 +721,7 @@
                     <h3 class="text-light mb-4">Address</h3>
                     <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>Convent Road, Manjummel, Eloor,Kerala, India
                     </p>
-                    <p class="mb-2"><i class="fa fa-phone-alt text-primary me-3"></i>+91 80755 83452</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt text-primary me-3"></i>+91 6282427319</p>
                     <p class="mb-2"><i class="fa fa-envelope text-primary me-3"></i>johnsconceptskochi@gmail.com</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-square btn-outline-body me-1" href="https://www.instagram.com/johns_concepts?utm_source=qr&igsh=MXc5dmhwOXpocjZybA==" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -778,7 +779,8 @@
         let yearGap = currentYear - givenYear;
 
         document.getElementById("yeargap").innerHTML = yearGap
-
+        document.getElementById("yeargap1").innerHTML = yearGap
+        
     </script>
     <script>
             < script >

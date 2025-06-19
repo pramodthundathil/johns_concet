@@ -232,6 +232,17 @@
 	justify-content: center;
 	margin-bottom: 15px;
 }
+
+    .modal-body {
+        max-height: 80vh; /* Limit the height of the modal */
+        overflow-y: auto; /* Allow scrolling if content is too tall */
+    }
+    
+    .carousel-item img {
+        max-height: 75vh; /* Set a maximum height for images */
+        object-fit: contain; /* Ensure the image scales and fits without distortion */
+    }
+
 </style>
 
 <div class="container mt-5">
@@ -262,9 +273,9 @@
 
             <h4 class="mt-4">Plans</h4>
             <div class="d-flex fleximages mb-4 thumbnail-gallery" style="justify-content: space-evenly; flex-wrap: wrap;">
-                <img src="{{project.primary_image.url}}" class="img-thumbnail wow fadeInUp" alt="">
-                <img src="{{project.plan_image_1.url}}" class="img-thumbnail wow fadeInUp" alt="">
-                <img src="{{project.plan_image_2.url}}" class="img-thumbnail wow fadeInUp" alt="">
+                <img src="{{project.primary_image.url}}" class="img-thumbnail wow fadeInUp" style="object-fit: contain;" alt="">
+                <img src="{{project.plan_image_1.url}}" class="img-thumbnail wow fadeInUp" style="object-fit: contain;" alt="">
+                <img src="{{project.plan_image_2.url}}" class="img-thumbnail wow fadeInUp" style="object-fit: contain;" alt="">
             </div>
             <div class="conatiner">
                 <h6>Client: {{project.client}}</h6>
@@ -284,13 +295,62 @@
 
                 <div class="wrap">
                     <div class="gallery">
+                        <!-- Image Gallery -->
                         {% for item in pictures %}
-                        
-                            <img src="{{ item.image.url }}" alt="" class="img-fluid" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-slide-to="{{ forloop.counter0 }}">
-                         
-                    {% endfor %}
+                            <img src="{{ item.image.url }}" alt="" class="img-fluid" 
+                                 data-bs-toggle="modal" data-bs-target="#imageModal" 
+                                 data-bs-slide-to="{{ forloop.counter0 }}">
+                        {% endfor %}
                     </div>
                 </div>
+                
+                <!-- Modal with Slideshow -->
+                <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="imageModalLabel">Image Slideshow</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+                                    <!-- Indicators for sliding to specific slides -->
+                                    <div class="carousel-indicators">
+                                        {% for item in pictures %}
+                                            <button type="button" data-bs-target="#imageCarousel" 
+                                                    data-bs-slide-to="{{ forloop.counter0 }}" 
+                                                    {% if forloop.first %} class="active" aria-current="true" {% endif %} 
+                                                    aria-label="Slide {{ forloop.counter }}">
+                                            </button>
+                                        {% endfor %}
+                                    </div>
+                
+                                    <!-- Carousel Items (Images in Slideshow) -->
+                                    <div class="carousel-inner">
+                                        {% for item in pictures %}
+                                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                                <img src="{{ item.image.url }}" class="d-block w-100 img-fluid" alt="Image {{ forloop.counter }}">
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                
+                                    <!-- Carousel Controls -->
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                
                 
             </div>
         </div>
@@ -307,7 +367,7 @@
         });
     });
 </script>
-<script>
+<!-- <script>
     $(document).ready(function() {
         $('#carouselImages').carousel({
             interval: 3000, // Auto-slide interval (optional)
@@ -511,7 +571,23 @@ $(function () {
     });
 });
 
+</script> -->
+
+<script>
+    // JavaScript to handle carousel slide-to functionality when opening modal
+    var myCarousel = document.querySelector('#imageCarousel');
+    var modal = document.getElementById('imageModal');
+    
+    // Add an event listener to set the active slide based on clicked image
+    modal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget; // Button that triggered the modal
+        var slideTo = button.getAttribute('data-bs-slide-to'); // Get the slide-to index
+        var carousel = new bootstrap.Carousel(myCarousel, {
+            interval: false // Disable autoplay
+        });
+
+        // Jump to the selected image
+        carousel.to(slideTo);
+    });
 </script>
-
-
 {% endblock %}
